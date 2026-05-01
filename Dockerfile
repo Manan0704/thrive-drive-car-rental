@@ -23,7 +23,7 @@ WORKDIR /var/www/html
 COPY . .
 
 # Install Laravel dependencies
-RUN composer install --no-dev --optimize-autoloader
+RUN composer install --no-dev --optimize-autoloader --ignore-platform-req=ext-mongodb
 
 # Give permissions
 RUN chown -R www-data:www-data /var/www/html \

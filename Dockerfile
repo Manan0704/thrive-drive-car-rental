@@ -1,17 +1,39 @@
-FROM php:8.2-cli
+FROM php:8.2-apache
 
+# Install system dependencies
 RUN apt-get update && apt-get install -y \
-    git unzip curl libzip-dev zip \
-    && docker-php-ext-install zip
+    git \
+    unzip \
+    libzip-dev \
+    libonig-dev \
+    libpng-dev \
+    && docker-php-ext-install pdo pdo_mysql zip
 
+# Install MongoDB extension
+RUN pecl install mongodb \
+    && docker-php-ext-enable mongodb
+
+# Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-WORKDIR /app
+# Set working directory
+WORKDIR /var/www/html
 
+# Copy project
 COPY . .
 
+# Install Laravel dependencies
 RUN composer install --no-dev --optimize-autoloader
 
-EXPOSE 10000
+# Give permissions
+RUN chown -R www-data:www-data /var/www/html \
+    && chmod -R 775 storage bootstrap/cache
 
-CMD php artisan serve --host=0.0.0.0 --port=10000
+# Apache config
+RUN a2enmod rewrite
+
+# Set public folder
+ENV APACHE_DOCUMENT_ROOT /var/www/html/public
+RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
+
+EXPOSE 10000

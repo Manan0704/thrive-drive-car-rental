@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css" integrity="sha512-dPXYcDub/aeb08c63jRq/k6GaKccl256JQy/AnOq7CAnEZ9FzSL9wSbcZkMp4R26vBsMLFYh6kQ67/bbV8XaCQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+{{-- <link rel="stylesheet" href="/assets/css/style.css" id="main-style-link" />
+<link rel="stylesheet" href="/assets/css/style-preset.css" id="preset-style-link" /> --}}
+{{-- <link rel="stylesheet" href="rent_agree_form.css" /> --}}
+{{-- <link rel="stylesheet" href="/public/rentform.css"> --}}
+<style>
+    body
+{
+    background-image:url('https://canepa.com/wp-content/uploads/2014/06/faded-cars-bg.jpg'); 
+     background-repeat: no-repeat;
+    background-size: cover;
+
+ /* background-color:black; */
+}
+.box
+{
+    height: auto;
+    width: 650px;
+    /* padding: 10px; */
+    background-color: transparent;
+    backdrop-filter:blur(5px);
+    border: 2px solid gray;
+    border-radius: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 10px 10px 10px gray;
+    /* margin-top: 150px;
+    padding-bottom: 150px; */
+}
+</style>
+</head>
+<body>
+    <div class="box" style="margin-bottom:40px;">
+        <div class="row justify-content-center pt-5">
+            <div class="col-9">
+                <h1 class="mb-5 text-white">Car Rent Agreement Form</h1>
+                <form>
+                    <div class="mb-3">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-user fa-fade"
+                                    style="color: #000000;"></i></span>
+                            <input type="text" class="form-control" placeholder="Full Name" name="fullname"
+                                value="{{ old('fullname') }}" aria-label="FullName" aria-describedby="basic-addon1">
+                        </div>
+                
+                        <span class=text-danger>
+                            @error('fullname')
+                                {{ $message }}
+                            @enderror
+                        </span>
+        
+        
+                    <div class=" mb-3">
+                        <label for="idproof" class="text-white"><b>License :</b></label>
+                        <input type="file" class="form-control" name="license_pic">
+                        <span>
+                            @error('license_pic')
+                                {{ $message }}
+                            @enderror
+                        </span>
+                    </div>
+
+                    <div class=" mb-3">
+                        <label for="from" class="text-white">From  : </label>
+                            <input type="date" value="{{ old('from') }}" class="form-control" name="from" value="From">
+                        <span>
+                            @error('from')
+                                {{ $message }}
+                            @enderror
+                        </span>
+                    </div>
+
+                    <div class=" mb-3">
+                        <label for="to" class="text-white">To  : </label>
+                        <input type="date"  name="to" value="{{ old('to') }}" class="form-control" value="to">  
+                        <span>
+                            @error('to')
+                                {{ $message }}
+                            @enderror
+                        </span>
+                    </div>
+                    
+
+                    <div class="input-group mb-3">
+                        <textarea style="height: 80px; width: 90px;" class="form-control" id="exampleFormControlTextarea1" name="address" placeholder="Address"  ></textarea>
+                        <span>
+                            @error('address')
+                                {{ $message }}
+                            @enderror
+                        </span>  
+                    </div>
+                      
+        
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+
+
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script> 
+
+</body>
+</html>

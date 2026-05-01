@@ -35,11 +35,23 @@ return [
 
     'connections' => [
 
+        // 'mongodb' => [
+        //   'driver' => 'mongodb',
+        //   'uri' => env('DB_URI'),
+        //   'database' => env('DB_DATABASE', 'ThriveDrive'),
+        // ],
+
         'mongodb' => [
-          'driver' => 'mongodb',
-          'uri' => env('DB_URI'),
-          'database' => env('DB_DATABASE', 'ThriveDrive'),
-        ],
+    'driver' => 'mongodb',
+    'host' => env('DB_HOST', '127.0.0.1'),
+    'port' => env('DB_PORT', 27017),
+    'database' => env('DB_DATABASE', 'ThriveDrive'),
+    'username' => env('DB_USERNAME'),
+    'password' => env('DB_PASSWORD'),
+    'options' => [
+        'database' => env('DB_AUTH_DATABASE', 'admin')
+    ]
+],
 
         'sqlite' => [
             'driver' => 'sqlite',

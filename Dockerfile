@@ -15,7 +15,6 @@ COPY . .
 
 RUN composer install --no-dev --optimize-autoloader --ignore-platform-req=ext-mongodb
 RUN php artisan config:clear
-RUN php artisan cache:clear
 
 RUN chown -R www-data:www-data /var/www/html \
     && chmod -R 775 storage bootstrap/cache

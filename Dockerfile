@@ -24,6 +24,11 @@ COPY . .
 
 # Install Laravel dependencies
 RUN composer install --no-dev --optimize-autoloader --ignore-platform-req=ext-mongodb
+RUN php artisan key:generate
+RUN php artisan config:clear
+RUN php artisan config:cache
+RUN php artisan route:cache
+RUN php artisan view:cache
 
 # Give permissions
 RUN chown -R www-data:www-data /var/www/html \
